@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+        <record id="sms_config_form" model="ir.ui.view">
+            <field name="name">sms.config.form</field>
+            <field name="model">sms.config</field>
+            <field name="arch" type="xml">
+                <form string="SMS Configuration">
+                    <group>
+                        <field name="api_key"/>
+                        <field name="api_secret"/>
+                        <field name="sender_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="sms_config_action" model="ir.actions.act_window">
+            <field name="name">SMS Configuration</field>
+            <field name="res_model">sms.config</field>
+            <field name="view_mode">form</field>
+            <field name="target">current</field>
+        </record>
+        <menuitem id="sms_config_menu" name="SMS Configuration" 
+                  action="sms_config_action" parent="base.menu_administration" sequence="20"/>
+    </data>
+</odoo>

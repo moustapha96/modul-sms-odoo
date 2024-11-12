@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+        <record id="sms_history_tree" model="ir.ui.view">
+            <field name="name">sms.history.tree</field>
+            <field name="model">sms.history</field>
+            <field name="arch" type="xml">
+                <tree string="SMS History">
+                    <field name="recipient"/>
+                    <field name="message"/>
+                    <field name="status"/>
+                    <field name="send_date"/>
+                </tree>
+            </field>
+        </record>
+        <record id="sms_history_action" model="ir.actions.act_window">
+            <field name="name">SMS History</field>
+            <field name="res_model">sms.history</field>
+            <field name="view_mode">tree</field>
+            <field name="target">current</field>
+        </record>
+        <menuitem id="sms_history_menu" name="SMS History" 
+                  action="sms_history_action" parent="base.menu_administration" sequence="40"/>
+    </data>
+</odoo>

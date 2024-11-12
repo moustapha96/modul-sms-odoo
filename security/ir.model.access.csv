@@ -1,0 +1,9 @@
+# Access rights for groups
+group_user,sms.config,read,1
+group_user,sms.config,create,1
+group_user,send.sms,read,1
+group_user,send.sms,create,1
+group_user,sms.history,read,1
+group_user,sms.model,read,1
+group_user,sms.model,create,1
+group_user,sms.model,write,1
