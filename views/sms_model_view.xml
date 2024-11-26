@@ -1,36 +1,35 @@
 <odoo>
-    <data>
-        <record id="sms_model_tree" model="ir.ui.view">
-            <field name="name">sms.model.tree</field>
-            <field name="model">sms.model</field>
-            <field name="arch" type="xml">
-                <tree string="SMS Model">
-                    <field name="code"/>
-                    <field name="message"/>
-                    <field name="parametre"/>
-                </tree>
-            </field>
-        </record>
-        <record id="sms_model_form" model="ir.ui.view">
-            <field name="name">sms.model.form</field>
-            <field name="model">sms.model</field>
-            <field name="arch" type="xml">
-                <form string="SMS Model">
+    <record id="view_sms_model_form" model="ir.ui.view">
+        <field name="name">sms.model.form</field>
+        <field name="model">sms.model</field>
+        <field name="arch" type="xml">
+            <form string="SMS Model">
+                <sheet>
                     <group>
-                        <field name="code"/>
-                        <field name="message"/>
-                        <field name="parametre"/>
+                        <field name="code" />
+                        <field name="message" />
+                        <field name="parametre" />
                     </group>
-                </form>
-            </field>
-        </record>
-        <record id="sms_model_action" model="ir.actions.act_window">
-            <field name="name">SMS Model</field>
-            <field name="res_model">sms.model</field>
-            <field name="view_mode">tree,form</field>
-            <field name="target">current</field>
-        </record>
-        <menuitem id="sms_model_menu" name="SMS Model" 
-                  action="sms_model_action" parent="base.menu_administration" sequence="50"/>
-    </data>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_sms_model_tree" model="ir.ui.view">
+        <field name="name">sms.model.tree</field>
+        <field name="model">sms.model</field>
+        <field name="arch" type="xml">
+            <tree string="SMS Model">
+                <field name="code" />
+                <field name="message" />
+                <field name="parametre" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_sms_model" model="ir.actions.act_window">
+        <field name="name">SMS Model</field>
+        <field name="res_model">sms.model</field>
+        <field name="view_mode">tree,form</field>
+    </record>
 </odoo>
