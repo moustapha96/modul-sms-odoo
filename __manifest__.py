@@ -37,7 +37,7 @@
 {
     'name': 'Orange Sonatel SMS',
     'version': '1.0',
-    'author': 'Khoumaa@Alhussein',
+    'author': 'ALHK-MMF',
     'category': 'Tools',
     'summary': 'Envoyer des SMS avec l\'API Orange Sonatel',
     'description': 'Ce module vous permet d\'envoyer des messages SMS depuis Odoo en utilisant l\'API Orange Sonatel.',

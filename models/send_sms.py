@@ -84,10 +84,9 @@ class SendSms(models.Model):
             
             uri = f"https://api.orangesmspro.sn:8443/api"
             response = requests.post(uri, data=parameters , headers=headers, auth=(login, token))
-            _logger.info(f"SMS API Response: {response.text}")
-           
-            response.raise_for_status() 
-            _logger.info(f"SMS API Response: {response.text}")
+            _logger.info(f"REPONSE API SMS: {response}")    
+            # response.raise_for_status() 
+            _logger.info(f"REPONSE API SMS: {response.text}")
             
             response_lines = response.text.strip().split('\n')
             response_dict = {}
@@ -97,7 +96,7 @@ class SendSms(models.Model):
                     key, value = line.split(':', 1)
                     response_dict[key.strip()] = value.strip()
 
-            if  response_dict.get('STATUS_CODE') == '200':
+            if  response_dict.get('STATUS_CODE') == 200:
                 self.status = 'sent'
                 self.message = "SMS sent successfully!"
             elif response_dict.get('STATUS_CODE') == 401:
