@@ -8,11 +8,12 @@
     'depends': ['base', 'sale'],
     'data': [
         'security/ir.model.access.csv',
-        'views/sms_config_view.xml',
+        # 'views/sms_config_view.xml',
         # 'views/send_sms_view.xml',
         # 'views/sms_history_view.xml',
         # 'views/test_orange_sms_view.xml',
-        # 'views/sale_order_view.xml',
+        # 'views/sale_orde
+        # r_view.xml',
         # 'views/menu_view.xml',
     ],
     'installable': True,
