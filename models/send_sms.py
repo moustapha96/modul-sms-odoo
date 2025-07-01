@@ -14,7 +14,8 @@ class SendSms(models.Model):
     _description = 'Send SMS'
 
     recipient = fields.Char('Recipient', required=True)
-    message = fields.Text('Message', required=True ,utf8=True)
+    # message = fields.Text('Message', required=True ,utf8=True)
+    message = fields.Text('Message', required=True , help="Enter the message to be sent via SMS. Ensure it is within the character limit set by your SMS provider.")
     status = fields.Selection(
         [
             ('pending', 'En attente'),
@@ -45,25 +46,10 @@ class SendSms(models.Model):
         
         # content = urllib.parse.quote(self.message, safe='')
         content = urllib.parse.quote_plus(self.message.encode('utf-8'), safe='')
-        _logger.info(f"Encoded Content: {content}")
 
         msg_to_encrypt = f"{token}{subject}{signature}{self.recipient}{content}{timestamp}"
-        _logger.info(f"Message to encrypt: {msg_to_encrypt}")
 
         key = hmac.new(api_key.encode('utf-8'), msg_to_encrypt.encode('utf-8'), hashlib.sha1).hexdigest()
-        _logger.info(f"Generated Key: {key}")
-
-
-        _logger.info(f"Token: {token}")
-        _logger.info(f"Subject: {subject}")
-        _logger.info(f"Signature: {signature}")
-        _logger.info(f"Recipient: {self.recipient}")
-        _logger.info(f"Content: {content}")
-        _logger.info(f"Timestamp: {timestamp}")
-        _logger.info(f"login: {login}")
-
-      
-        _logger.info(f"Generated Key: {key}")
       
         try:
            
@@ -76,7 +62,7 @@ class SendSms(models.Model):
                 'timestamp': timestamp,
                 'key': key
             }
-            _logger.info(f"SMS API Parameters: {parameters}")
+            
 
             headers = {
                 'Content-Type': 'application/x-www-form-urlencoded',
