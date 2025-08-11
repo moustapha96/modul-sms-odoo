@@ -31,8 +31,7 @@ class SendSms(models.Model):
         config = self.env['sms.config'].get_default_config()
 
         if not config:
-            # raise UserError(_("Please configure the SMS configuration."))
-            return True
+            raise UserError(_("Please configure the SMS configuration."))
 
         login = config.login
         token = config.token
@@ -40,8 +39,7 @@ class SendSms(models.Model):
         signature = config.signature
 
         if not login or not token or not api_key or not signature:
-            # raise UserError(_("Please configure the SMS configuration."))
-            return True
+            raise UserError(_("Please configure the SMS configuration."))
 
         subject = "CCBM-SHOP"
         timestamp = int(time.time())
@@ -102,6 +100,7 @@ class SendSms(models.Model):
             })
         except Exception as e:
            
+
             self.status = 'failed'
             error_message = _("Error sending SMS: {}").format(str(e))
             self.env['sms.history'].sudo().create({
