@@ -15,8 +15,9 @@
         'views/sale_order_message_views.xml',
         'views/sale_order_view.xml',
         'views/menu_view.xml',
-        #'views/sms_model_view.xml',
     ],
     'installable': True,
     'application': True,
+    'auto_install': False,
+    'license': 'LGPL-3',
 }
