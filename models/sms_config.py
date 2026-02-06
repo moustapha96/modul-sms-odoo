@@ -10,5 +10,5 @@ class SmsConfig(models.Model):
 
     @api.model
     def get_default_config(self):
-        config = self.search([], limit=1)
+        config = self.search([ ('login', '!=', False) ], limit=1)
         return config if config else False
