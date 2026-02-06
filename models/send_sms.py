@@ -41,18 +41,29 @@ class SendSms(models.Model):
         if not login or not token or not api_key or not signature:
             raise UserError(_("Please configure the SMS configuration."))
 
-        subject = "CCBM-SHOP"
+        subject = "CCTS"
         timestamp = int(time.time())
-        
-        # content = urllib.parse.quote(self.message, safe='')
-        content = urllib.parse.quote_plus(self.message.encode('utf-8'), safe='')
 
-        msg_to_encrypt = f"{token}{subject}{signature}{self.recipient}{content}{timestamp}"
+        # Génération de la clé : ordre des paramètres comme dans la requête POST
+        # (token, subject, signature, recipient, content, timestamp)
+        # Content = message brut (pas URL-encodé). Encodage UTF-8 explicite pour HMAC (exigé par l'API).
+        content_raw = (self.message or '').strip()
+        recipient_raw = (self.recipient or '').strip()
+        msg_to_encrypt = ''.join([
+            (token or '').strip(),
+            (subject or '').strip(),
+            (signature or '').strip(),
+            recipient_raw,
+            content_raw,
+            str(timestamp),
+        ])
+        key = hmac.new(
+            (api_key or '').encode('utf-8'),
+            msg_to_encrypt.encode('utf-8'),
+            hashlib.sha1
+        ).hexdigest()
 
-        key = hmac.new(api_key.encode('utf-8'), msg_to_encrypt.encode('utf-8'), hashlib.sha1).hexdigest()
-      
         try:
-           
             parameters = {
                 'token': token,
                 'subject': subject,
